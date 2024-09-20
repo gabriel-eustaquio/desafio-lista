@@ -1,0 +1,52 @@
+@import "@/styles/settings.module.scss";
+
+.card {
+  display: flex;
+  align-items: center;
+  max-width: 450px;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-bottom: 24px;
+  margin-left: auto;
+  border-radius: 16px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1); 
+  padding: 32px;
+  box-sizing: border-box;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    letter-spacing: -2%;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+
+
+
+}
+
+.button {
+  display: flex;
+  width: 450px;
+  justify-content: center;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  border-radius: 8px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1); 
+  padding: 16px 24px;
+  box-sizing: border-box;
+  background: linear-gradient(45deg, #0796D3, #53C0F0);
+  color: #FFFFFF;
+
+  @media screen and (max-width: 700px) {
+    width: calc(450px - 23vw);
+    
+  }
+
+
+}
+
+

@@ -1,0 +1,82 @@
+@import "@/styles/settings.module.scss";
+
+.back {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 300;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 3;
+  backdrop-filter: blur(2px);
+
+  .modal {
+    width: 450px;
+    top: 249px;
+    left: 38%;
+    border-radius: 16px;
+    position: fixed;
+    z-index: 50;
+    padding: 32px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 900px) {
+      left: 90%;
+    }
+
+    @media screen and (max-width: 600px) {
+      padding: 24px;
+      width: calc(100vw - 48px);
+      height: calc(100vh - 48px);
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      top: 0%;
+      left: 0%;
+    }
+
+    h2 {
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    p {
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+
+
+  }
+
+}
+
+
+.buttons {
+  display: flex;
+  gap: 8px;
+
+  .cancel {
+    flex: 1;
+    background-color: #E7EEFB;
+    padding: 16px 24px;
+    border-radius: 8px;
+    border: none;
+  }
+
+  .delete {
+    flex: 1;
+    background: linear-gradient(45deg, #D30707, #F05353);
+    color: #FFFFFF;
+    padding: 16px 24px;
+    border-radius: 8px;
+    border: none;
+  }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+
+}
