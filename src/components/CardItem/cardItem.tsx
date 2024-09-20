@@ -16,14 +16,7 @@ type CardProps = {
 
 export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked, id, setId, setModalDelete, setTaskToDelete}: CardProps) {
 
-  function removeIdTasksChecked(e: React.MouseEvent<HTMLElement>) {
-    setTasksChecked(tasksChecked.filter((task) => task.text != e.currentTarget.innerText));
-    setId(id + 1);
-    setTasks([...tasks, {text: e.currentTarget.innerText, id}]);
-  }
-
-  function removeIdTasksCheckedTouch(e: React.TouchEvent<HTMLElement>) {
-    console.log(e)
+  function removeIdTasksChecked(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) {
     setTasksChecked(tasksChecked.filter((task) => task.text != e.currentTarget.innerText));
     setId(id + 1);
     setTasks([...tasks, {text: e.currentTarget.innerText, id}]);
@@ -67,7 +60,7 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
         <ul className={`${styles.cardItem}`}>
         {tasksChecked.map((task) => {
             if (task.text) {
-              return <li key={`task${task.text + task.id}`} onClick={removeIdTasksChecked} onTouchStart={removeIdTasksCheckedTouch}>
+              return <li key={`task${task.text + task.id}`} onClick={removeIdTasksChecked}>
                 <input type="checkbox" id={`${task.text + id}`} defaultChecked/>
                 <label className={`${styles.tasksChecked}`} htmlFor={`${task.text + id}`}>{task.text}</label>
                 <div onClick={(e) => {
