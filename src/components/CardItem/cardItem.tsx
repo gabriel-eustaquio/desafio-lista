@@ -11,11 +11,10 @@ type CardProps = {
   id: number,
   setId: React.Dispatch<React.SetStateAction<number>>,
   setModalDelete: React.Dispatch<React.SetStateAction<boolean>>,
-  taskToDelete: string,
   setTaskToDelete: React.Dispatch<React.SetStateAction<string>>,
 }
 
-export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked, id, setId, setModalDelete, taskToDelete, setTaskToDelete}: CardProps) {
+export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked, id, setId, setModalDelete, setTaskToDelete}: CardProps) {
 
   function removeIdTasksChecked(e: React.MouseEvent<HTMLElement>) {
     setTasksChecked(tasksChecked.filter((task) => task.text != e.currentTarget.innerText));
@@ -45,7 +44,7 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
                   setModalDelete(true);
                   e.stopPropagation();
                 }}>
-                  <Image src="/images/binpoint.svg" width={24} height={24} alt="Logo" priority/>                  
+                  <Image src="/imagens/binpoint.svg" width={24} height={24} alt="Logo" priority/>                  
                 </div>
                 
               </li>
@@ -66,7 +65,7 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
                   setModalDelete(true);                  
                   e.stopPropagation();
                 }}>
-                  <Image src="/images/binpoint.svg" width={24} height={24} alt="Logo" priority/>                  
+                  <Image src="/imagens/binpoint.svg" width={24} height={24} alt="Logo" priority/>                  
                 </div>
               </li>
             }
