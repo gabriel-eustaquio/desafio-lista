@@ -26,7 +26,7 @@ export default function Card() {
         <div className={`${styles.card}`}>
           <CardItem tasks={tasks} setTasks={setTasks} tasksChecked={tasksChecked} setTasksChecked={setTasksChecked} id={id} setId={setId} setModalDelete={setModalDelete} setTaskToDelete={setTaskToDelete}/>
         </div>
-        <button className={`${styles.button}`} onClick={() => setModal(true)}>Adicionar nova tarefa</button>
+        <button className={`${styles.button}`} onClick={() => setModal(true)} onTouchStart={() => setModal(true)}>Adicionar nova tarefa</button>
         <Modal modal={modal} setModal={setModal} text={text} setText={setText} tasks={tasks} setTasks={setTasks} id={id} setId={setId} />
         <ModalDelete modalDelete={modalDelete} setModalDelete={setModalDelete} tasks={tasks} setTasks={setTasks} tasksChecked={tasksChecked} setTasksChecked={setTasksChecked} id={id} setId={setId} taskToDelete={taskToDelete} setTaskToDelete={setTaskToDelete}/>
       </section>

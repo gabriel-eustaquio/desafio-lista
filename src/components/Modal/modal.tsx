@@ -43,10 +43,10 @@ export default function Modal({modal, setModal, text, setText, tasks, setTasks, 
           <label htmlFor="titulo">Titulo</label>
           <input type="text" name="titulo" id="titulo" placeholder="Digite" value={text} onChange={(e) => {
             setText(e.target.value)
-          }}/>
+          }} />
           <div className={`${styles.buttons}`}>
-            <button className={`${styles.cancel}`} onClick={handleClickCancel}>Cancelar</button>
-            <button className={`${styles.submit}`} onClick={handleClick}>Adicionar nova tarefa</button>
+            <button className={`${styles.cancel}`} onClick={handleClickCancel} onTouchStart={handleClickCancel}>Cancelar</button>
+            <button className={`${styles.submit}`} onClick={handleClick} onTouchStart={handleClickCancel}>Adicionar nova tarefa</button>
           </div>
         </form>
       </div>

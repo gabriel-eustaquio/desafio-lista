@@ -24,8 +24,12 @@ export default function ModalDelete({modalDelete, setModalDelete, tasks, setTask
           <h2>Deletar tarefa</h2>
           <p>Tem certeza que você deseja deletar essa tarefa?</p>
           <div className={`${styles.buttons}`}>
-            <button className={`${styles.cancel}`} onClick={() => setModalDelete(false)}>Cancelar</button>
+            <button className={`${styles.cancel}`} onClick={() => setModalDelete(false)} onTouchStart={() => setModalDelete(false)}>Cancelar</button>
             <button className={`${styles.delete}`} onClick={() => {
+              setTasksChecked(tasksChecked.filter((task) => task.text != taskToDelete));
+              setTasks(tasks.filter((task) => task.text != taskToDelete));
+              setModalDelete(false);
+            }} onTouchStart={() => {
               setTasksChecked(tasksChecked.filter((task) => task.text != taskToDelete));
               setTasks(tasks.filter((task) => task.text != taskToDelete));
               setModalDelete(false);

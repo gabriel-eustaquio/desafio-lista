@@ -16,17 +16,16 @@ type CardProps = {
 
 export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked, id, setId, setModalDelete, setTaskToDelete}: CardProps) {
 
-  function removeIdTasksChecked(e: React.MouseEvent<HTMLElement>) {
+  function removeIdTasksChecked(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) {
     setTasksChecked(tasksChecked.filter((task) => task.text != e.currentTarget.innerText));
     setId(id + 1);
     setTasks([...tasks, {text: e.currentTarget.innerText, id}]);
   }
 
-  function addToTasksChecked(e: React.MouseEvent<HTMLElement>) {
+  function addToTasksChecked(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) {
     setId(id + 1);
     setTasksChecked([...tasksChecked, {text: e.currentTarget.innerText.replace("Apagar", " ").trim(), id}])
     setTasks(tasks.filter(task => task.text != e.currentTarget.innerText.replace("Apagar", " ").trim()))
-
   }
 
   return (
@@ -36,14 +35,18 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
         <ul className={`${styles.cardItem}`}>
           {tasks.map((task) => {
             if (task.text) {
-              return <li key={`task${task.text + task.id}`} onClick={addToTasksChecked} >
+              return <li key={`task${task.text + task.id}`} onClick={addToTasksChecked} onTouchStart={addToTasksChecked}>
                 <input type="checkbox" id={`${task.text + id}`} />
                 <label htmlFor={`${task.text + id}`}>{task.text}</label>
                 <div onClick={(e) => {
                   setTaskToDelete(`${e.currentTarget.previousElementSibling?.innerHTML}`);
                   setModalDelete(true);
                   e.stopPropagation();
-                }}>
+                }} onTouchStart={(e) => {
+                  setTaskToDelete(`${e.currentTarget.previousElementSibling?.innerHTML}`);
+                  setModalDelete(true);
+                  e.stopPropagation();
+                }}> 
                   <Image src="/imagens/binpoint.svg" width={24} height={24} alt="Logo" priority/>                  
                 </div>
                 
@@ -57,10 +60,14 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
         <ul className={`${styles.cardItem}`}>
         {tasksChecked.map((task) => {
             if (task.text) {
-              return <li key={`task${task.text + task.id}`} onClick={removeIdTasksChecked}>
+              return <li key={`task${task.text + task.id}`} onClick={removeIdTasksChecked} onTouchStart={removeIdTasksChecked}>
                 <input type="checkbox" id={`${task.text + id}`} defaultChecked/>
                 <label className={`${styles.tasksChecked}`} htmlFor={`${task.text + id}`}>{task.text}</label>
                 <div onClick={(e) => {
+                  setTaskToDelete(`${e.currentTarget.previousElementSibling?.innerHTML}`);
+                  setModalDelete(true);                  
+                  e.stopPropagation();
+                }} onTouchStart={(e) => {
                   setTaskToDelete(`${e.currentTarget.previousElementSibling?.innerHTML}`);
                   setModalDelete(true);                  
                   e.stopPropagation();
