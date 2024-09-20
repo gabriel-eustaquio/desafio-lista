@@ -46,7 +46,7 @@ export default function Modal({modal, setModal, text, setText, tasks, setTasks, 
           }} />
           <div className={`${styles.buttons}`}>
             <button className={`${styles.cancel}`} onClick={handleClickCancel} onTouchStart={handleClickCancel}>Cancelar</button>
-            <button className={`${styles.submit}`} onClick={handleClick} onTouchStart={handleClickCancel}>Adicionar nova tarefa</button>
+            <button className={`${styles.submit}`} onClick={handleClick} onTouchStart={handleClick}>Adicionar nova tarefa</button>
           </div>
         </form>
       </div>
