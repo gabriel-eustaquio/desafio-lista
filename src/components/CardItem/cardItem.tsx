@@ -16,16 +16,16 @@ type CardProps = {
 
 export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked, id, setId, setModalDelete, setTaskToDelete}: CardProps) {
 
-  function removeIdTasksChecked(taskText: string) {
-    setTasksChecked(tasksChecked.filter((task) => task.text !== taskText));
+  function moveToChecked(taskText: string) {
     setId(id + 1);
-    setTasks([...tasks, {text: taskText, id}]);
+    setTasksChecked([...tasksChecked, { text: taskText, id }]);
+    setTasks(tasks.filter(task => task.text !== taskText));
   }
 
-  function addToTasksChecked(taskText: string) {
+  function moveToTasks(taskText: string) {
     setId(id + 1);
-    setTasksChecked([...tasksChecked, {text: taskText, id}]);
-    setTasks(tasks.filter(task => task.text !== taskText));
+    setTasks([...tasks, { text: taskText, id }]);
+    setTasksChecked(tasksChecked.filter(task => task.text !== taskText));
   }
 
   const handleDeleteClick = (taskText: string) => {
@@ -42,8 +42,12 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
             if (task.text) {
               return (
                 <li key={`${task.text}${task.id}`}>
-                  <input type="checkbox" id={`${task.text}${id}`} />
-                  <label htmlFor={`${task.text}${id}`} onClick={() => addToTasksChecked(task.text)}>
+                  <input 
+                    type="checkbox" 
+                    id={`${task.text}${id}`} 
+                    onChange={() => moveToChecked(task.text)} 
+                  />
+                  <label htmlFor={`${task.text}${id}`} onClick={() => moveToChecked(task.text)}>
                     {task.text}
                   </label>
                   <div onClick={() => handleDeleteClick(task.text)} onTouchEnd={() => handleDeleteClick(task.text)}>
@@ -63,8 +67,13 @@ export default function CardItem({tasks, setTasks, tasksChecked, setTasksChecked
             if (task.text) {
               return (
                 <li key={`${task.text}${task.id}`}>
-                  <input type="checkbox" id={`${task.text}${id}`} defaultChecked />
-                  <label className={styles.tasksChecked} htmlFor={`${task.text}${id}`} onClick={() => removeIdTasksChecked(task.text)}>
+                  <input 
+                    type="checkbox" 
+                    id={`${task.text}${id}`} 
+                    defaultChecked 
+                    onChange={() => moveToTasks(task.text)} 
+                  />
+                  <label className={styles.tasksChecked} htmlFor={`${task.text}${id}`} onClick={() => moveToTasks(task.text)}>
                     {task.text}
                   </label>
                   <div onClick={() => handleDeleteClick(task.text)} onTouchEnd={() => handleDeleteClick(task.text)}>
